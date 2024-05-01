@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'Hemosys.wsgi.application'
 if not DEBUG:
     DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-}
+    }
 else:
     DATABASES = {
         'default': {
@@ -156,16 +156,16 @@ EMAIL_USE_TLS = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR/'assets'
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # for
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" 
 
-# import os
+import os
 # STATIC_URL = '/static/'
-# STATICFILES_DIRS=[
-#     os.path.join(BASE_DIR,'static')
-# ]
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR,'static')
+]
 
-# MEDIA_URL ='/media/'
-# MEDIA_ROOT =os.path.join(BASE_DIR,"media")
+MEDIA_URL ='/media/'
+MEDIA_ROOT =os.path.join(BASE_DIR,"media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

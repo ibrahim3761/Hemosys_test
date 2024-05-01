@@ -25,7 +25,7 @@ def signup(request):
 
             if get_user_model().objects.filter(email=email).exists():
                 messages.warning(request, "YOU ARE ALREADY REGISTERED WITH THIS EMAIL")
-                return redirect('/auth/signup/')
+                return redirect(request,'/auth/signup/')
 
             
             user = form.save(commit=False)
@@ -45,11 +45,11 @@ def signup(request):
             email_message = EmailMessage(email_subject,message,settings.EMAIL_HOST_USER,[user.email])
             email_message.send()
             messages.success(request,"ACTIVATE YOUR ACCOUNT BY CLICKING THE LINK IN YOUR GMAIL")
-            return redirect('/auth/login/')
+            return redirect(request,'/auth/login/')
         
         else:
             messages.warning(request,"INVALID PASSWORD")
-            return redirect('/auth/signup/')
+            return redirect(request,'/auth/signup/')
             
     else:
         form = signupForm()
@@ -96,7 +96,7 @@ class RequestResetEmailView(View):
             return redirect('/')
         else:
             messages.info(request,"YOU ARE NOT REGISTERED")
-            return redirect('/auth/signup/')
+            return redirect(request,'/auth/signup/')
 
 
 
@@ -137,7 +137,7 @@ class SetNewPasswordView(View):
             user.set_password(password)
             user.save()
             messages.success(request,"PASSWORD RESET SUCCESS")
-            return redirect('/auth/login/')
+            return redirect(request,'/auth/login/')
 
         except DjangoUnicodeDecodeError as identifier:
             messages.error(request,"SOMETHING WENT WRONG")
@@ -165,7 +165,7 @@ def handlelogin(request):
             
         else:
             messages.error(request, "INVALID EMAIL OR PASSWORD")
-            return redirect('/auth/login')
+            return redirect(request,'/auth/login')
     
     form = AuthenticationForm()
     return render(request,'login.html')
@@ -174,7 +174,7 @@ def handlelogin(request):
 def handlelogout(request):
     logout(request)
     messages.info(request,"LOG OUT SUCCESS")
-    return redirect('/auth/login')
+    return redirect(request,'/auth/login')
 
 
 def user_profile(request):
@@ -195,7 +195,7 @@ def complete_profile(request):
             profile.user = request.user
             profile.save()
             messages.success(request, "SUCCESSFULLY REGISTERED AS DONOR")
-            return redirect('/auth/profile/')
+            return redirect(request,'/auth/profile/')
     
     else:
         profile_form = userprofileForm()
@@ -212,7 +212,7 @@ def edit_profile(request):
         form = userprofileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
-            return redirect('/auth/profile/')
+            return redirect(request,'/auth/profile/')
     else:
         form = userprofileForm(instance=user_profile)
     return render(request, 'editprofile.html', {'form': form})
@@ -240,7 +240,7 @@ def add_blood_bank(request):
             bloodbank.bloodbanktypes = typedata
             bloodbank.save()
             messages.success(request, "BLOOD BANK ADDED SUCCESSFULLY")
-            return redirect('/auth/profile/')
+            return redirect(request,'/auth/profile/')
     
     else:
         bank_form = bloodbankForm()
@@ -272,7 +272,7 @@ def edit_bloodbank(request):
             bloodbank.bloodbankgroups = groupdata
             bloodbank.bloodbanktypes = typedata
             bloodbank.save()
-            return redirect('/auth/profile/')
+            return redirect(request,'/auth/profile/')
     else:
         form = bloodbankForm(instance=bloodbank_profile)
     return render(request, 'editbloodbank.html', {'form': form})
