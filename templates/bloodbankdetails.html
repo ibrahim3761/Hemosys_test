@@ -1,0 +1,39 @@
+{% extends "base.html" %} 
+{% block title %} Hemosys | Blood Bank Details{% endblock title %} 
+{% block content %}
+{% load static %}
+<!-- ======= Portfolio Details Section ======= -->
+<section id="portfolio-details" class="portfolio-details"> 
+  <br><br>
+  <div class="section-title">
+    <h2>Blood Bank</h2>
+  </div>
+
+  <div class="container">
+    <div class="row gy-4"> 
+      <div class="col-lg-8">
+        {% if bank.image %} 
+        <img src="{{ bank.image.url }}" alt="" class="img-fluid rounded" style="width: 600px; height: 415px;"/>
+        {% else %}
+        <img src="{% static '\images\blood-bank.jpg' %}" alt="" class="img-fluid rounded" style="width: 600px; height: 415px;"/>
+        {% endif %}      </div>
+      <div class="col-lg-4">
+        <div class="portfolio-info">
+          <h3>{{ bank.bloodbankname }}</h3>
+          <ul>
+            <li><strong>Email</strong>: {{ bank.bloodbankemail }} </li> 
+            <li><strong>Contact</strong>: {{ bank.bloodbankphone }} </li> 
+            <li><strong>Website</strong>: {{ bank.bloodbanklink }} </li> 
+            <li><strong>Location</strong>: {{ bank.bloodbanklocation }} </li> 
+            <li><strong>Available Types</strong>: {{ bank.bloodbanktypes }}</li> 
+            <li><strong>Available Groups</strong>: {{ bank.bloodbankgroups}}</li> 
+            <li><strong>Accreditations</strong>: {{ bank.bloodbankaccreditations}}</li> 
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Portfolio Details Section -->
+
+{% endblock content %}
