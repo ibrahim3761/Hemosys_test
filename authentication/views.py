@@ -25,7 +25,7 @@ def signup(request):
 
             if get_user_model().objects.filter(email=email).exists():
                 messages.warning(request, "YOU ARE ALREADY REGISTERED WITH THIS EMAIL")
-                return redirect(request,'/auth/signup/')
+                return redirect('/auth/signup/')
 
             
             user = form.save(commit=False)
@@ -49,7 +49,7 @@ def signup(request):
         
         else:
             messages.warning(request,"INVALID PASSWORD")
-            return redirect(request,'/auth/signup/')
+            return redirect('/auth/signup/')
             
     else:
         form = signupForm()
@@ -70,7 +70,7 @@ class ActivateAccountView(View):
             user.is_active=True
             user.save()
             messages.info(request,"ACCOUNT ACTIVATED SUCCESSFULLY")
-            return redirect('/auth/login')
+            return redirect(request,'/auth/login')
         return render(request,'activatefail.html')
 
 class RequestResetEmailView(View):
@@ -96,7 +96,7 @@ class RequestResetEmailView(View):
             return redirect('/')
         else:
             messages.info(request,"YOU ARE NOT REGISTERED")
-            return redirect(request,'/auth/signup/')
+            return redirect('/auth/signup/')
 
 
 
