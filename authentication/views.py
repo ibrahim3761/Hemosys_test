@@ -45,7 +45,7 @@ def signup(request):
             email_message = EmailMessage(email_subject,message,settings.EMAIL_HOST_USER,[user.email])
             email_message.send()
             messages.success(request,"ACTIVATE YOUR ACCOUNT BY CLICKING THE LINK IN YOUR GMAIL")
-            return redirect(request,'/auth/login/')
+            return redirect('/auth/login/')
         
         else:
             messages.warning(request,"INVALID PASSWORD")
@@ -70,7 +70,7 @@ class ActivateAccountView(View):
             user.is_active=True
             user.save()
             messages.info(request,"ACCOUNT ACTIVATED SUCCESSFULLY")
-            return redirect(request,'/auth/login')
+            return redirect('/auth/login')
         return render(request,'activatefail.html')
 
 class RequestResetEmailView(View):
@@ -165,7 +165,7 @@ def handlelogin(request):
             
         else:
             messages.error(request, "INVALID EMAIL OR PASSWORD")
-            return redirect(request,'/auth/login')
+            return redirect('/auth/login')
     
     form = AuthenticationForm()
     return render(request,'login.html')
@@ -174,7 +174,7 @@ def handlelogin(request):
 def handlelogout(request):
     logout(request)
     messages.info(request,"LOG OUT SUCCESS")
-    return redirect(request,'/auth/login')
+    return redirect('/auth/login')
 
 
 def user_profile(request):
