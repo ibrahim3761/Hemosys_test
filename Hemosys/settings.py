@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-vggk6@=1u4$m=vx$&p+&0zo4em0=u=5bx!l69$!n_*6)!1p%xf')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == "True"
+DEBUG = os.environ.get('DEBUG', 'False') == "False"
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost',"hemosys-bb.onrender.com"]
 
@@ -89,12 +89,16 @@ if not DEBUG:
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+   DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hemosys_test_db',
+        'USER': 'hemosys_test_db_user',
+        'PASSWORD': '8FBaVMUuQ7UP3WbRkl3iNgn53jprf5y0',
+        'PORT': '5432',
+        'HOST':'dpg-cop6ul0cmk4c739paqcg-a.oregon-postgres.render.com',
     }
+}
 
 
 
