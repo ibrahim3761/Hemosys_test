@@ -27,7 +27,13 @@ class signupForm(UserCreationForm):
 class userprofileForm(forms.ModelForm):
     class Meta:
         model = userprofile
-        fields = ('phone', 'location', 'bloodgroup', 'age', 'gender', 'image')
+        fields = ('phone', 'location', 'bloodgroup', 'age', 'gender')
+
+        # def clean_image(self):
+        #     image = self.cleaned_data['image']
+        #     if image:
+        #         return image.read()  # Read the binary data
+        #     return None
 
 class bloodbankForm(forms.ModelForm):
     class Meta:
@@ -38,4 +44,4 @@ class bloodbankForm(forms.ModelForm):
 class UpdateUserForm(UserChangeForm):
     class Meta:
         model = userprofile
-        fields = ('phone', 'location', 'bloodgroup', 'age', 'gender', 'image')
+        fields = ('phone', 'location', 'bloodgroup', 'age', 'gender')
