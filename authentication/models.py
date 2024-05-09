@@ -9,7 +9,7 @@ class userprofile(models.Model):
     bloodgroup = models.CharField(max_length=100, verbose_name="Blood Group")
     age = models.CharField(max_length=3)
     gender = models.CharField(max_length=10)
-    image = models.BinaryField(blank=True, null=True)
+    image = models.ImageField(upload_to='authetication_userprofile', blank=True, null=True)
     donor_donationcount = models.IntegerField(default = 0, verbose_name="Dontion Count")
 
     def __str__(self):

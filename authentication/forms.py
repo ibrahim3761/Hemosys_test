@@ -27,7 +27,7 @@ class signupForm(UserCreationForm):
 class userprofileForm(forms.ModelForm):
     class Meta:
         model = userprofile
-        fields = ('phone', 'location', 'bloodgroup', 'age', 'gender')
+        fields = ('phone', 'location', 'bloodgroup', 'age', 'gender','image')
 
         # def clean_image(self):
         #     image = self.cleaned_data['image']
@@ -44,4 +44,4 @@ class bloodbankForm(forms.ModelForm):
 class UpdateUserForm(UserChangeForm):
     class Meta:
         model = userprofile
-        fields = ('phone', 'location', 'bloodgroup', 'age', 'gender')
+        fields = ('phone', 'location', 'bloodgroup', 'age', 'gender','image')
