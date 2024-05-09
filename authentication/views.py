@@ -195,7 +195,7 @@ def complete_profile(request):
             profile.user = request.user
             profile.save()
             messages.success(request, "SUCCESSFULLY REGISTERED AS DONOR")
-            return redirect(request,'/auth/profile/')
+            return redirect('/auth/profile/')
     
     else:
         profile_form = userprofileForm()
@@ -212,7 +212,7 @@ def edit_profile(request):
         form = userprofileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
             form.save()
-            return redirect(request,'/auth/profile/')
+            return redirect('/auth/profile/')
     else:
         form = userprofileForm(instance=user_profile)
     return render(request, 'editprofile.html', {'form': form})
