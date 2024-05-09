@@ -137,7 +137,7 @@ class SetNewPasswordView(View):
             user.set_password(password)
             user.save()
             messages.success(request,"PASSWORD RESET SUCCESS")
-            return redirect(request,'/auth/login/')
+            return redirect('/auth/login/')
 
         except DjangoUnicodeDecodeError as identifier:
             messages.error(request,"SOMETHING WENT WRONG")
@@ -240,7 +240,7 @@ def add_blood_bank(request):
             bloodbank.bloodbanktypes = typedata
             bloodbank.save()
             messages.success(request, "BLOOD BANK ADDED SUCCESSFULLY")
-            return redirect(request,'/auth/profile/')
+            return redirect('/auth/profile/')
     
     else:
         bank_form = bloodbankForm()
@@ -272,7 +272,7 @@ def edit_bloodbank(request):
             bloodbank.bloodbankgroups = groupdata
             bloodbank.bloodbanktypes = typedata
             bloodbank.save()
-            return redirect(request,'/auth/profile/')
+            return redirect('/auth/profile/')
     else:
         form = bloodbankForm(instance=bloodbank_profile)
     return render(request, 'editbloodbank.html', {'form': form})
